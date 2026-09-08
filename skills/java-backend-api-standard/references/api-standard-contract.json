@@ -1,0 +1,77 @@
+{
+  "profiles": ["minimal", "standard"],
+  "requestHeaders": {
+    "common": [
+      "authorization",
+      "accept-language",
+      "x-trace-id",
+      "x-reqid",
+      "x-timestamp",
+      "x-sign",
+      "x-sign-alg",
+      "x-api-version",
+      "x-udid"
+    ],
+    "sdkOnly": ["x-api-key"],
+    "obsolete": [
+      "x-request-id",
+      "x-body-hash",
+      "x-signature",
+      "x-signature-alg",
+      "x-nonce",
+      "Idempotency-Key"
+    ]
+  },
+  "signatureHeaders": {
+    "requiredConstantFragments": [
+      "API_KEY = \"x-api-key\"",
+      "TIMESTAMP = \"x-timestamp\"",
+      "REQID = \"x-reqid\"",
+      "AUTHORIZATION = \"authorization\"",
+      "UDID = \"x-udid\"",
+      "SIGN = \"x-sign\"",
+      "SIGNATURE_ALG = \"x-sign-alg\"",
+      "API_VERSION = \"x-api-version\""
+    ]
+  },
+  "requiredComponents": {
+    "common": {
+      "ApiResult.java": "unified response wrapper is missing",
+      "PageResult.java": "pagination wrapper is missing",
+      "ErrorCode.java": "error code abstraction is missing",
+      "CommonErrorCode.java": "common error code enum is missing",
+      "GlobalExceptionHandler.java": "global exception handler is missing",
+      "AccessLogContext.java": "access log result context is missing",
+      "RequestTraceLogFilter.java": "global request trace/access log filter is missing",
+      "ApiCorsConfiguration.java": "shared CORS configuration is missing",
+      "ApiCorsProperties.java": "shared CORS properties are missing",
+      "CachedBodyHttpServletRequest.java": "request body cache wrapper is missing",
+      "RequestBodyMasker.java": "request body masking policy is missing",
+      "SignatureCanonicalPayload.java": "缺少签名请求 query/body 规范化组件",
+      "SecurityErrorResponseWriter.java": "unified security error response writer is missing",
+      "SqlInjectionConfiguration.java": "SQL injection filter registration is missing",
+      "SqlInjectionFilter.java": "SQL injection boundary filter is missing",
+      "SqlInjectionGuard.java": "SQL injection guard is missing",
+      "SqlInjectionProperties.java": "SQL injection properties are missing",
+      "RateLimitConfiguration.java": "rate limit filter registration is missing",
+      "RateLimitFilter.java": "rate limit filter is missing",
+      "RateLimiter.java": "rate limiter contract is missing",
+      "RateLimitProperties.java": "rate limit properties are missing",
+      "FileUploadSecurityConfiguration.java": "file upload security configuration is missing",
+      "FileUploadSecurityPolicy.java": "file upload security policy is missing",
+      "FileUploadSecurityProperties.java": "file upload security properties are missing",
+      "OperationAudit.java": "operation audit annotation is missing",
+      "OperationAuditAspect.java": "operation audit aspect is missing",
+      "OperationAuditRecord.java": "operation audit record model is missing",
+      "OperationAuditService.java": "operation audit service contract is missing",
+      "BaseEntity.java": "base entity is missing",
+      "OperatorContext.java": "operator context is missing",
+      "EntityAuditFillSupport.java": "entity audit fill support is missing"
+    },
+    "minimalOmit": [
+      "FileUploadSecurityConfiguration.java",
+      "FileUploadSecurityPolicy.java",
+      "FileUploadSecurityProperties.java"
+    ]
+  }
+}

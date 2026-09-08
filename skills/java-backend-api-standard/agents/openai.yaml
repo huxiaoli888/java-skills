@@ -1,0 +1,16 @@
+interface:
+  display_name: "Java 后端 API 标准"
+  short_description: "统一 HTTP/API 契约、响应、错误码和安全"
+  default_prompt: "使用 $java-backend-api-standard 定义或检查 Java 后端 HTTP/API 契约、统一响应、错误码和安全标准。"
+policy:
+  trigger_keywords:
+    - "HTTP/API 契约"
+    - "统一响应"
+    - "错误码"
+    - "reqid"
+    - "请求头"
+    - "认证鉴权"
+    - "签名"
+    - "防重放"
+    - "幂等"
+    - "OpenAPI"

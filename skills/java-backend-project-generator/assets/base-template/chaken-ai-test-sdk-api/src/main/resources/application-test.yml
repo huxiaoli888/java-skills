@@ -1,0 +1,12 @@
+server:
+  port: 28081
+
+chaken:
+  web:
+    cors:
+      allowed-origins:
+        - https://sdk-test.example.com
+  sdk:
+    security:
+      default-api-key: test-sdk-api-key
+      default-secret: test-sdk-secret

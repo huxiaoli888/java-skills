@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaken.ai.test.cms.sys.mapper.SysDictMapper">
+    <select id="selectDictPage" resultType="com.chaken.ai.test.cms.sys.entity.SysDictEntity">
+        select
+            id,
+            dict_code,
+            dict_name,
+            status,
+            remark,
+            create_time,
+            modify_time
+        from cms_sys_dict
+        <where>
+            <if test="keyword != null and keyword != ''">
+                and (
+                    dict_code like concat('%', #{keyword}, '%')
+                    or dict_name like concat('%', #{keyword}, '%')
+                    or remark like concat('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+        order by create_time desc, id desc
+    </select>
+</mapper>

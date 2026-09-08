@@ -1,0 +1,26 @@
+server:
+  port: ${CMS_SERVER_PORT:18080}
+
+spring:
+  datasource:
+    url: ${CMS_DATASOURCE_URL}
+    username: ${CMS_DATASOURCE_USERNAME}
+    password: ${CMS_DATASOURCE_PASSWORD}
+  flyway:
+    enabled: ${CMS_FLYWAY_ENABLED:true}
+    locations: classpath:db/migration
+
+chaken:
+  web:
+    cors:
+      allowed-origins:
+        - ${CMS_CORS_ORIGIN}
+      allow-credentials: true
+  cms:
+    security:
+      default-sign-secret: ${CMS_SIGN_SECRET}
+  security:
+    rate-limit:
+      default-permits: ${CMS_RATE_LIMIT_DEFAULT_PERMITS:120}
+    file-upload:
+      max-bytes: ${CMS_FILE_UPLOAD_MAX_BYTES:10485760}

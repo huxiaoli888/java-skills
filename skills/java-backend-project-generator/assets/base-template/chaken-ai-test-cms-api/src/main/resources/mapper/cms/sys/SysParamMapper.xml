@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaken.ai.test.cms.sys.mapper.SysParamMapper">
+    <select id="selectParamPage" resultType="com.chaken.ai.test.cms.sys.entity.SysParamEntity">
+        select
+            id,
+            param_key,
+            param_value,
+            param_name,
+            status,
+            remark,
+            create_time,
+            modify_time
+        from cms_sys_param
+        <where>
+            <if test="keyword != null and keyword != ''">
+                and (
+                    param_key like concat('%', #{keyword}, '%')
+                    or param_name like concat('%', #{keyword}, '%')
+                    or remark like concat('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+        order by create_time desc, id desc
+    </select>
+</mapper>

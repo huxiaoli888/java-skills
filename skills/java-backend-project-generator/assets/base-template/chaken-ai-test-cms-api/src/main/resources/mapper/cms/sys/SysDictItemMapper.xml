@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaken.ai.test.cms.sys.mapper.SysDictItemMapper">
+    <select id="selectActiveItems" resultType="com.chaken.ai.test.cms.sys.entity.SysDictItemEntity">
+        select
+            id,
+            dict_code,
+            item_value,
+            item_label,
+            sort_no,
+            status,
+            remark,
+            create_time,
+            modify_time
+        from cms_sys_dict_item
+        where dict_code = #{dictCode}
+          and status = 1
+        order by sort_no asc, id asc
+    </select>
+</mapper>

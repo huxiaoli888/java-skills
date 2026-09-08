@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaken.ai.test.cms.log.mapper.LoginLogMapper">
+    <select id="selectLoginLogPage" resultType="com.chaken.ai.test.cms.log.entity.LoginLogEntity">
+        select
+            id,
+            operation,
+            status,
+            user_agent,
+            ip,
+            creator_name,
+            trace_id,
+            reqid,
+            create_time
+        from cms_login_log
+        <where>
+            <if test="keyword != null and keyword != ''">
+                and (
+                    creator_name like concat('%', #{keyword}, '%')
+                    or ip like concat('%', #{keyword}, '%')
+                    or reqid like concat('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+        order by create_time desc, id desc
+    </select>
+</mapper>

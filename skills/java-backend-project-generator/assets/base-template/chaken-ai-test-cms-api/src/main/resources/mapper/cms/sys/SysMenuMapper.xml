@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaken.ai.test.cms.sys.mapper.SysMenuMapper">
+    <select id="selectActiveMenus" resultType="com.chaken.ai.test.cms.sys.entity.SysMenuEntity">
+        select
+            id,
+            parent_id,
+            menu_name,
+            menu_type,
+            path,
+            permission_code,
+            sort_no,
+            status,
+            create_time,
+            modify_time
+        from cms_sys_menu
+        where status = 1
+        order by sort_no asc, id asc
+    </select>
+
+    <select id="selectUserMenus" resultType="com.chaken.ai.test.cms.sys.entity.SysMenuEntity">
+        select distinct
+            m.id,
+            m.parent_id,
+            m.menu_name,
+            m.menu_type,
+            m.path,
+            m.permission_code,
+            m.sort_no,
+            m.status,
+            m.create_time,
+            m.modify_time
+        from cms_sys_menu m
+        inner join cms_sys_role_menu rm on rm.menu_id = m.id
+        inner join cms_sys_user_role ur on ur.role_id = rm.role_id
+        where ur.user_id = #{userId}
+          and m.status = 1
+        order by m.sort_no asc, m.id asc
+    </select>
+</mapper>

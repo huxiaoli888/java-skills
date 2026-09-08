@@ -1,0 +1,5 @@
+chaken:
+  netty:
+    security:
+      dev-api-key: test-netty-api-key
+      dev-token: test-netty-token

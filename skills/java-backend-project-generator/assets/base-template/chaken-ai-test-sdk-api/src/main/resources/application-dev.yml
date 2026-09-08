@@ -1,0 +1,12 @@
+server:
+  port: 18081
+
+chaken:
+  web:
+    cors:
+      allowed-origins:
+        - http://localhost:5173
+  sdk:
+    security:
+      default-api-key: dev-sdk-api-key
+      default-secret: dev-sdk-secret

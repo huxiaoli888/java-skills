@@ -1,0 +1,18 @@
+server:
+  port: ${SDK_SERVER_PORT:18081}
+
+chaken:
+  web:
+    cors:
+      allowed-origins:
+        - ${SDK_CORS_ORIGIN}
+      allow-credentials: true
+  sdk:
+    security:
+      default-api-key: ${SDK_DEFAULT_API_KEY}
+      default-secret: ${SDK_DEFAULT_SECRET}
+  security:
+    rate-limit:
+      default-permits: ${SDK_RATE_LIMIT_DEFAULT_PERMITS:300}
+    file-upload:
+      max-bytes: ${SDK_FILE_UPLOAD_MAX_BYTES:10485760}

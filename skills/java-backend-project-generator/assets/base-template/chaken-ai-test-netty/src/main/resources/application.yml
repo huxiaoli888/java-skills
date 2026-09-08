@@ -1,0 +1,43 @@
+server:
+  port: 18082
+
+spring:
+  application:
+    name: chaken-ai-test-netty
+  profiles:
+    active: dev
+
+chaken:
+  netty:
+    tcp:
+      enabled: true
+      port: 19090
+      auth-timeout-ms: 5000
+      reader-idle-seconds: 60
+      max-frame-bytes: 65536
+    udp:
+      enabled: true
+      port: 19091
+      max-datagram-bytes: 2048
+      route-ttl-seconds: 60
+    rate-limit:
+      max-qps-per-udid: 120
+    security:
+      timestamp-skew-seconds: 300
+      replay-ttl-seconds: 300
+      dev-api-key: dev-netty-api-key
+      dev-token: dev-netty-token
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when_authorized
+  metrics:
+    tags:
+      application: ${spring.application.name}

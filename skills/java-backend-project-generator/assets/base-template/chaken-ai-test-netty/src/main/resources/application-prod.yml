@@ -1,0 +1,5 @@
+chaken:
+  netty:
+    security:
+      dev-api-key: ${NETTY_API_KEY:}
+      dev-token: ${NETTY_TOKEN:}

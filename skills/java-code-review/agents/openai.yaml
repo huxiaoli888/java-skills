@@ -1,0 +1,16 @@
+interface:
+  display_name: "Java 代码审查"
+  short_description: "按风险、证据和测试缺口审查 Java 变更"
+  default_prompt: "使用 $java-code-review 审查 Java/Spring Boot 变更的正确性、安全性、兼容性和测试风险。"
+policy:
+  trigger_keywords:
+    - "代码审查"
+    - "PR"
+    - "diff"
+    - "commit"
+    - "Finding"
+    - "回归风险"
+    - "兼容性"
+    - "安全风险"
+    - "测试缺口"
+    - "生产风险"

@@ -1,0 +1,16 @@
+interface:
+  display_name: "Java 事故修复"
+  short_description: "处理 Java 生产事故、热修和 RCA"
+  default_prompt: "使用 $java-incident-fix 排查 Java 生产事故并制定安全止血方案。"
+policy:
+  trigger_keywords:
+    - "生产事故"
+    - "线上故障"
+    - "500 激增"
+    - "止血"
+    - "根因定位"
+    - "回滚"
+    - "热修复"
+    - "RCA"
+    - "数据风险"
+    - "安全密码事件"

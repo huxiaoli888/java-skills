@@ -1,0 +1,20 @@
+interface:
+  display_name: "Vibe Coding 知识库"
+  short_description: "生成 AGENTS.md 和 AI 编码知识库文档"
+  default_prompt: "使用 $vibecoding-knowledge-base 分析项目，并在不修改业务代码的前提下生成 AGENTS.md 与 docs/vibecoding 知识库文档。"
+policy:
+  trigger_keywords:
+    - "vibecoding"
+    - "Vibe Coding"
+    - "知识库"
+    - "AGENTS.md"
+    - "docs/vibecoding"
+    - "模块导航"
+    - "证据链"
+    - "待确认清单"
+    - "完整分析"
+    - "AI 编程文档"
+    - "系统边界"
+    - "接口索引"
+    - "流程追踪"
+    - "跨仓边界"

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaken.ai.test.cms.log.mapper.OperationLogMapper">
+    <select id="selectOperationLogPage" resultType="com.chaken.ai.test.cms.log.entity.OperationLogEntity">
+        select
+            id,
+            operation,
+            operation_type,
+            business_id,
+            detail,
+            success,
+            error_message,
+            trace_id,
+            reqid,
+            request_method,
+            request_uri,
+            request_time,
+            user_agent,
+            ip,
+            creator_name,
+            create_time
+        from cms_operation_log
+        <where>
+            <if test="keyword != null and keyword != ''">
+                and (
+                    operation like concat('%', #{keyword}, '%')
+                    or request_uri like concat('%', #{keyword}, '%')
+                    or creator_name like concat('%', #{keyword}, '%')
+                    or reqid like concat('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="success != null">
+                and success = #{success}
+            </if>
+        </where>
+        order by create_time desc, id desc
+    </select>
+</mapper>

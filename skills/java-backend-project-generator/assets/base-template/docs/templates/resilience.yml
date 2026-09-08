@@ -1,0 +1,11 @@
+app:
+  resilience:
+    default-timeout: 3s
+    retry:
+      enabled: true
+      max-attempts: 2
+      backoff: 200ms
+    circuit-breaker:
+      enabled: false
+      failure-rate-threshold: 50
+      slow-call-duration-threshold: 2s

@@ -1,0 +1,8 @@
+flowchart LR
+  Client["外部调用方"] --> Api["{{apiModule}}"]
+  Api --> Common["{{commonModule}}"]
+  Api --> Core["{{coreModule}}"]
+  Consumer["{{consumerModule}}"] --> Common
+  Consumer --> Core
+  Core --> Integration["{{integrationModule}}"]
+  Integration --> External["外部系统"]

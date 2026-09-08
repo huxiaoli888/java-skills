@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="{{basePackage}}.cms.sampleitem.mapper.SampleItemMapper">
+
+    <!-- 复杂 SQL 参考 renren 项目放在 Mapper XML 中；Java Mapper 只保留方法签名和参数声明。 -->
+    <select id="selectRecentActiveItems" resultType="{{basePackage}}.cms.sampleitem.entity.SampleItemEntity">
+        select
+            id,
+            name,
+            remark,
+            create_by,
+            create_time,
+            modify_by,
+            modify_time,
+            version,
+            deleted
+        from sample_item
+        where deleted = 0
+        <if test="keyword != null and keyword != ''">
+            and (
+                name like concat('%', #{keyword}, '%')
+                or remark like concat('%', #{keyword}, '%')
+            )
+        </if>
+        order by create_time desc, id desc
+        limit #{limit}
+    </select>
+
+</mapper>

@@ -1,0 +1,220 @@
+{
+  "requiredText": [
+    "SMEEEE",
+    "x-reqid",
+    "x-timestamp",
+    "x-sign",
+    "x-sign-alg",
+    "x-api-version",
+    "x-api-key",
+    "apiKeyGroup",
+    "sign-alg",
+    "api-key",
+    "udid",
+    "seqno",
+    "KEY_ID",
+    "connectionEpoch",
+    "netty_connections_active",
+    "netty_udp_routes_active",
+    "netty_udp_datagrams_dropped_total",
+    "netty-tcp-udp.md",
+    "BODY_SHA256_HEX",
+    "CANONICAL_QUERY",
+    "HttpUpgradeAuthHandler",
+    "WsAuthMessageHandler",
+    "signed-upgrade",
+    "auth-message",
+    "ackStatus",
+    "java-backend-api-standard",
+    "Netty 传输协议说明书",
+    "Implementation Plan 模板",
+    "SignatureVerifier",
+    "ReplayKeyResolver",
+    "ReplayCache",
+    "response-contract.md",
+    "implementation-plan.md",
+    "implementation-layout.md",
+    "netty:conn"
+  ],
+  "replayKeyText": [
+    "http-cms:{authSubject}:{x-udid}:{x-reqid}",
+    "http-cms-public:{path}:{clientIp}:{x-reqid}",
+    "http-sdk:{x-api-key}:{x-reqid}:{authSubject|anonymous}",
+    "ws-upgrade:{x-api-key}:{x-reqid}:{authSubject|clientId}",
+    "ws-auth:{api-key}:{reqid}:{ticketId|authSubject|connectionId}",
+    "ws-message:{api-key}:{reqid}:{authSubject|connectionId}",
+    "tcp:{api-key}:{reqid}:{udid}",
+    "udp:{api-key}:{reqid}:{udid}"
+  ],
+  "templateHttpRestText": [
+    "HTTP/REST CMS/SDK 签名约束",
+    "CMS HTTP/REST 登录后受保护接口使用 `authorization/x-udid/x-reqid/x-timestamp/x-sign/x-sign-alg/x-api-version`",
+    "不使用 `x-api-key` 作为后台公参",
+    "SDK/OpenAPI HTTP/REST 接口使用 `authorization/x-reqid/x-timestamp/x-sign/x-sign-alg/x-api-version/x-api-key`",
+    "登录、验证码、公开探活等 CMS 公开接口默认不需要 `authorization`、签名或 `x-udid`",
+    "不进入签名 replay cache",
+    "只携带 `x-reqid/x-timestamp/x-sign/x-sign-alg/x-api-version`",
+    "按 `path + clientIp + x-reqid` 叠加限流",
+    "CMS 和 SDK/OpenAPI 都必须支持 GET 与 POST `application/json` 的签名防篡改",
+    "CMS 还必须支持 POST `application/x-www-form-urlencoded` 表单提交的签名防篡改",
+    "GET 的 `CANONICAL_QUERY` 来自 URL query，`BODY_SHA256_HEX` 使用空字节数组 hash",
+    "POST `application/json` 的 `BODY_SHA256_HEX` 使用原始 request body bytes",
+    "CMS POST `application/x-www-form-urlencoded` 的 `BODY_SHA256_HEX` 使用原始 form body bytes",
+    "`multipart/form-data`、文件上传和流式 body 不在默认规则内"
+  ],
+  "websocketHttpRestBoundaryText": [
+    "这是 WebSocket Upgrade 特例，不代表 CMS HTTP/REST 后台接口需要 `x-api-key`",
+    "该规则只适用于 WebSocket Upgrade，不改变 CMS HTTP/REST 不使用 `x-api-key` 的后台公参规则"
+  ],
+  "implementationHttpHeaderText": [
+    "HTTP/REST 或 WebSocket Upgrade Header",
+    "CMS HTTP/REST 解析 `authorization/x-udid/x-reqid/x-timestamp/x-sign/x-sign-alg/x-api-version`",
+    "且不要求 `x-api-key`",
+    "SDK/OpenAPI 与 WebSocket `signed-upgrade` 解析 `authorization/x-reqid/x-timestamp/x-sign/x-sign-alg/x-api-version/x-api-key`",
+    "公开探活",
+    "CMS 受保护接口",
+    "SDK/OpenAPI 高风险请求",
+    "signed-upgrade",
+    "TCP/UDP/WebSocket 消息 envelope 解析"
+  ],
+  "implementationSignatureVerifierText": [
+    "接收 canonical request",
+    "x-api-key/api-key",
+    "CMS 登录主体/token 指纹",
+    "sign-alg",
+    "比较签名",
+    "构造不同入口的 canonical string"
+  ],
+  "templateMaintenanceBoundaryText": [
+    "## 模板维护边界",
+    "本文件只承载交付模板索引，不作为协议、安全、响应、集群或观测规则的 source reference",
+    "`protocol-format.md` 为准",
+    "`response-contract.md` 为准",
+    "`signature-canonicalization.md` 为准",
+    "`netty-websocket.md` 为准",
+    "`netty-tcp-udp.md` 为准",
+    "`cluster-routing.md` 为准",
+    "`observability-testing.md` 为准",
+    "必须先更新对应 source reference，再同步对应 `references/templates/*.md` 子模板和自检脚本"
+  ],
+  "templateConfigParameterText": [
+    "## 配置参数清单",
+    "`websocket.auth-timeout-ms`",
+    "`websocket.max-frame-payload-length`",
+    "`tcp.max-frame-bytes`",
+    "`tcp.auth-timeout-ms`",
+    "`tcp.reader-idle-seconds`",
+    "`udp.max-datagram-bytes`",
+    "`udp.route-ttl-seconds`",
+    "`security.timestamp-skew-seconds`",
+    "`security.replay-ttl-seconds`",
+    "`rate-limit.max-qps-per-udid`"
+  ],
+  "templateResponseAckBoundaryText": [
+    "## 响应和 ACK 字段边界",
+    "响应和 ACK 统一使用 `reqid/code/message/ts/data`",
+    "响应和 ACK 顶层禁止返回 `func/version/traceId/status`",
+    "成功响应和成功 ACK 固定 `code=000000`",
+    "失败码必须使用 `SMEEEE` 格式",
+    "禁止的是响应或 ACK 顶层协议状态字段",
+    "业务 `payload` 或 `data` 内部可以包含订单状态、设备状态、令牌状态等领域字段",
+    "ACK 确认对象放在 `data.ackFunc`",
+    "确认状态放在 `data.ackStatus`",
+    "ACK 的 `message` 使用中文提示",
+    "ACK 属于响应类消息，不作为入站业务 `func + version` 注册 handler"
+  ],
+  "templateResponseFooterText": [
+    "错误码格式：成功固定 `000000`；失败使用 6 位字符串 `SMEEEE`",
+    "具体错误码表以 `references/response-contract.md` 为准",
+    "| [从 response-contract.md 引用] | [true/false] | [错误说明] | [客户端处理建议] |",
+    "不要新增 `ACK + V1`、`AckHandler` 或把 ACK 放入入站业务 handler registry"
+  ],
+  "templateTcpUdpFieldText": [
+    "`udid`",
+    "高风险、需鉴权或需防篡改请求使用 `authorization/sign/sign-alg/api-key`",
+    "匿名公开探测可省略并改由限流和风控兜底",
+    "`reqid + ts + api-key + udid`",
+    "`seqno`",
+    "DEVICE_STATUS_REPORT"
+  ],
+  "templateTcpUdpAnonymousText": [
+    "匿名公开探测可省略",
+    "匿名公开探测按 IP、端口和 `func` 限流",
+    "匿名公开探测可省略 `udid`"
+  ],
+  "templateDevicePingLineText": [
+    "TCP/UDP 已识别设备探活需携带 `udid`",
+    "WebSocket 已认证连接可依赖连接身份",
+    "无顺序语义时不需要 `seqno`"
+  ],
+  "templatePublicPingLineText": [
+    "匿名公开探测",
+    "可省略 `udid/authorization/sign/sign-alg/api-key`",
+    "限流"
+  ],
+  "templateSignatureCostMetricText": [
+    "`netty_signature_verify_total`",
+    "`netty_signature_verify_duration_ms`",
+    "验签总量，覆盖成功、失败和跳过路径",
+    "验签耗时，用于评估正常请求 HMAC 成本和算法退化",
+    "验签成功率",
+    "验签 P95/P99 耗时"
+  ],
+  "templateClusterConnectionBoundaryText": [
+    "标识 TCP/WebSocket 单条连接",
+    "标识 UDP 上层 session 或异步响应 route，短 TTL，不代表稳定连接",
+    "防止旧 UDP route 过期清理新 route 映射",
+    "`userId/deviceId/udid`",
+    "`netty:udp-route:{routeId}`",
+    "`netty:udid:{udid}`",
+    "`transport,nodeId,userId,deviceId,udid,connectionEpoch,connectedAt`",
+    "`connectionId/routeId`",
+    "UDP endpoint 已过期"
+  ],
+  "templateClusterRouteFlowText": [
+    "TCP/WebSocket 鉴权成功，或 UDP 上层 route 创建成功",
+    "routeId + routeEpoch",
+    "connectionEpoch/routeEpoch"
+  ],
+  "templateClusterCleanupText": [
+    "close 或 route 过期清理",
+    "旧连接 close 或旧 route 过期晚于新映射注册"
+  ],
+  "templateClusterOpsRecoveryText": [
+    "节点下线 | 清理本节点 TCP/WebSocket 连接映射和 UDP route 映射，Redis TTL 作为兜底",
+    "服务重启 | TCP/WebSocket 客户端重连，UDP route 由短 TTL 过期或由上层 session 重建，业务状态从 Redis/DB/MQ 恢复",
+    "节点滚动发布 | 先停止接新 TCP/WebSocket 连接和新 UDP route，再等待旧连接迁移、route 过期或超时关闭",
+    "节点下线映射清理",
+    "滚动发布期间连接迁移和 UDP route 过期",
+    "在线状态结合心跳时间、route `lastSeenAt` 和节点健康，不只依赖 Redis key"
+  ],
+  "templateClusterSequenceBoundaryText": [
+    "只有具备业务顺序语义的低风险消息才使用 `payload.seqno`",
+    "`seqno` 不替代 `reqid`"
+  ],
+  "templateClusterNotificationMetricText": [
+    "目标节点通道/stream",
+    "跨节点通知或异步响应成功率"
+  ],
+  "templateLoadReportMetricText": [
+    "最大稳定连接数 / UDP route 数",
+    "udpMaxDatagramBytes",
+    "udpRouteTtlSeconds",
+    "连接数 / UDP route 数",
+    "UDP datagram 丢弃数",
+    "UDP route 过期数",
+    "UDP datagram 丢弃率",
+    "UDP route 过期率",
+    "## 安全事件统计",
+    "`netty_signature_fail_total`",
+    "`netty_replay_rejected_total`",
+    "`netty_timestamp_skew_rejected_total`",
+    "`transport/nodeId/stage/reason/signAlg/canonicalBuilder/bodyHashSource/contentTypeClass`",
+    "`transport/nodeId/stage/replayKeyType/reason`",
+    "`transport/nodeId/stage/reason`",
+    "核心消息延迟、错误率、ACK 超时和限流必须按 `nodeId` 聚合",
+    "签名失败率",
+    "重放拦截率",
+    "时间戳偏差拒绝率"
+  ]
+}

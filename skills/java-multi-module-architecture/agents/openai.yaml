@@ -1,0 +1,15 @@
+interface:
+  display_name: "Java 多模块架构"
+  short_description: "设计 Maven 多模块、POM 和依赖边界"
+  default_prompt: "使用 $java-multi-module-architecture 设计或评审 Java Maven 多模块结构。"
+policy:
+  trigger_keywords:
+    - "Maven 多模块"
+    - "父工程"
+    - "子模块"
+    - "POM"
+    - "模块边界"
+    - "依赖方向"
+    - "common"
+    - "可部署模块"
+    - "模块级 AGENTS.md"

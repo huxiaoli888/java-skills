@@ -1,0 +1,20 @@
+interface:
+  display_name: "Java/Netty 后端统一入口"
+  short_description: "为 Java/Netty 后端任务选择正确 skill"
+  default_prompt: "使用 $java-backend-development-orchestrator 为 Java/Netty 后端任务选择正确的专项 skill。"
+policy:
+  trigger_keywords:
+    - "统一入口"
+    - "Java/Netty"
+    - "选择 skill"
+    - "API 标准"
+    - "项目脚手架"
+    - "多模块"
+    - "微服务实现"
+    - "代码审查"
+    - "生产事故"
+    - "Netty 协议入口"
+    - "知识库"
+    - "AGENTS.md"
+    - "docs/vibecoding"
+    - "架构文档"

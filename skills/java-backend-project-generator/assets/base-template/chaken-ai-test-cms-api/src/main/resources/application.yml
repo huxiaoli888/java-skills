@@ -1,0 +1,106 @@
+server:
+  port: 18080
+  servlet:
+    context-path: /chaken-ai-test-cms-api
+
+spring:
+  application:
+    name: chaken-ai-test-cms-api
+  profiles:
+    active: dev
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+chaken:
+  web:
+    cors:
+      enabled: true
+      path-pattern: /**
+      allowed-origins: []
+      allowed-origin-patterns: []
+      allowed-methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowed-headers:
+        - authorization
+        - accept-language
+        - content-type
+        - x-timestamp
+        - x-reqid
+        - x-sign
+        - x-sign-alg
+        - x-api-version
+        - x-trace-id
+        - x-udid
+      exposed-headers:
+        - x-trace-id
+      allow-credentials: true
+      max-age: 1800
+  security:
+    rate-limit:
+      enabled: true
+      default-permits: 120
+      default-window: 1m
+      identity-headers:
+        - x-udid
+      exclude-paths:
+        - /actuator/health
+      rules:
+        - path-pattern: /api/v1/cms/auth/login
+          permits: 10
+          window: 1m
+        - path-pattern: /api/v1/cms/**/export
+          permits: 5
+          window: 1m
+    sql-injection:
+      enabled: true
+      check-query-parameters: true
+      check-form-parameters: false
+      exclude-paths:
+        - /api/v1/cms/health
+    file-upload:
+      enabled: true
+      max-bytes: 10485760
+      allowed-content-types:
+        - image/png
+        - image/jpeg
+        - application/pdf
+      allowed-extensions:
+        - png
+        - jpg
+        - jpeg
+        - pdf
+  cms:
+    security:
+      enabled: true
+      signature-enabled: true
+      replay-window: 5m
+      token-ttl: 12h
+      auth-exclude-paths:
+        - /api/v1/cms/auth/login
+        - /api/v1/cms/auth/captcha
+        - /api/v1/cms/health
+      udid-exclude-paths:
+        - /api/v1/cms/auth/login
+        - /api/v1/cms/auth/captcha
+        - /api/v1/cms/health
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when_authorized
+  metrics:
+    tags:
+      application: ${spring.application.name}

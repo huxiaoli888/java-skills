@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaken.ai.test.cms.auth.mapper.AdminTokenMapper">
+    <select id="selectActiveToken" resultType="com.chaken.ai.test.cms.auth.entity.AdminTokenEntity">
+        select id,
+               admin_id,
+               username,
+               token_hash,
+               udid,
+               status,
+               expire_time,
+               create_time,
+               last_active_time
+        from cms_admin_token
+        where token_hash = #{tokenHash}
+          and status = 1
+        limit 1
+    </select>
+
+    <update id="revokeByTokenHash">
+        update cms_admin_token
+        set status = 0,
+            last_active_time = current_timestamp
+        where token_hash = #{tokenHash}
+          and status = 1
+    </update>
+</mapper>

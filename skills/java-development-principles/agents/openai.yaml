@@ -1,0 +1,16 @@
+interface:
+  display_name: "Java 开发原则"
+  short_description: "约束分层、SOLID、事务、日志和测试"
+  default_prompt: "使用 $java-development-principles 检查 Java 后端变更的分层、可测试性和可维护性。"
+policy:
+  trigger_keywords:
+    - "职责拆分"
+    - "SOLID"
+    - "单一职责"
+    - "开闭原则"
+    - "依赖倒置"
+    - "接口隔离"
+    - "组合复用"
+    - "事务边界"
+    - "异常处理"
+    - "日志脱敏"

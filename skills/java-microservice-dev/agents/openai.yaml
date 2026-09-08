@@ -1,0 +1,16 @@
+interface:
+  display_name: "Java 微服务开发"
+  short_description: "实现 Spring Boot API、Service 和集成逻辑"
+  default_prompt: "使用 $java-microservice-dev 按现有项目约定实现 Spring Boot 后端变更。"
+policy:
+  trigger_keywords:
+    - "已有项目实现"
+    - "Controller"
+    - "Service"
+    - "Mapper"
+    - "JPA"
+    - "Feign"
+    - "Redis"
+    - "MQ"
+    - "配置"
+    - "测试"

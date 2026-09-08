@@ -1,0 +1,17 @@
+<!-- Copy these dependencies into deployable API modules that expose health, metrics and tracing. -->
+<dependencies>
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-prometheus</artifactId>
+  </dependency>
+  <!-- Enable only when the company tracing backend is ready. Version should follow the approved BOM. -->
+  <dependency>
+    <groupId>io.opentelemetry</groupId>
+    <artifactId>opentelemetry-api</artifactId>
+    <optional>true</optional>
+  </dependency>
+</dependencies>

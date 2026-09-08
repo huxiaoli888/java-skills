@@ -1,0 +1,15 @@
+interface:
+  display_name: "Java 后端项目生成器"
+  short_description: "生成 Spring Boot 多模块脚手架和基础骨架"
+  default_prompt: "使用 $java-backend-project-generator 生成新的 Java/Spring Boot Maven 后端脚手架。"
+policy:
+  trigger_keywords:
+    - "新建 Java 项目"
+    - "Spring Boot 脚手架"
+    - "Maven 多模块"
+    - "minimal profile"
+    - "standard profile"
+    - "common"
+    - "cms-api"
+    - "sdk-api"
+    - "IncludeNetty"

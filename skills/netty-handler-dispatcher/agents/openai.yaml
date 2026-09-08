@@ -1,0 +1,18 @@
+interface:
+  display_name: "Netty Handler Dispatcher"
+  short_description: "设计 Netty 协议入口、分发、签名和连接治理"
+  default_prompt: "使用 $netty-handler-dispatcher 设计或评审 Netty TCP/UDP/WebSocket 协议入口和 handler dispatcher。"
+policy:
+  trigger_keywords:
+    - "协议入口"
+    - "TCP/UDP/WebSocket"
+    - "handler dispatcher"
+    - "func + version 分发"
+    - "令牌上传/下载"
+    - "心跳"
+    - "ACK"
+    - "签名"
+    - "防重放"
+    - "集群路由"
+    - "背压"
+    - "压测"
