@@ -77,7 +77,7 @@ java-skills/
 1. 将本项目的 `skills/` 下各 skill 目录复制到本机 Codex skills 目录：
 
 ```text
-D:\Users\CodexData\.codex\skills
+C:\Users\03052\.codex\skills
 ```
 
 推荐复制完整 `skills/` 目录，避免 `java-backend-development-orchestrator` 无法路由到专项 skill。
