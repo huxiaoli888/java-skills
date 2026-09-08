@@ -2,6 +2,43 @@
 
 本项目集中存放 Java/Netty 后端相关 Codex skills，用于规范 AI 辅助开发、代码审查、项目脚手架、生产事故处理、Netty 协议设计和项目知识库沉淀。
 
+核心目标：
+
+- 让 AI 编码先进入标准框架，再做业务实现。
+- 避免 AI 自由发挥导致接口、日志、鉴权、模块边界和异常处理不一致。
+- 将重复规则收敛到权威 skill，其他 skill 只做摘要和引用。
+- 通过自检脚本和 forward-test 场景持续验证 skill 质量。
+
+## 项目定位
+
+这不是普通 Java 业务工程，而是一组面向 Codex 的 Java 后端开发规范与操作手册。它适用于以下场景：
+
+- 新建 Java/Spring Boot 后端项目。
+- 在已有 Java 项目中开发接口、业务逻辑、MQ、Redis、外部调用和测试。
+- 设计 Maven 多模块架构和模块边界。
+- 统一 HTTP/API 响应、错误码、请求头、签名、防重放和幂等规则。
+- 设计或审查 Netty TCP、UDP、WebSocket 协议入口。
+- 做 Java 代码审查和生产事故修复。
+- 为项目生成 `AGENTS.md` 和 `docs/vibecoding` AI 编程知识库。
+
+## 核心关系
+
+```text
+java-backend-development-orchestrator
+        |
+        +-- java-backend-api-standard
+        +-- java-backend-project-generator
+        +-- java-microservice-dev
+        +-- java-multi-module-architecture
+        +-- java-development-principles
+        +-- java-code-review
+        +-- java-incident-fix
+        +-- netty-handler-dispatcher
+        `-- vibecoding-knowledge-base
+```
+
+`java-backend-development-orchestrator` 是统一入口；其他 skill 是专项权威。使用时先判断任务类型，再加载最小必要 skill 集合。
+
 ## 目录结构
 
 ```text
@@ -34,6 +71,28 @@ java-skills/
 | `java-incident-fix` | Java/Spring Boot 生产事故、线上故障、数据风险、安全事件的止血、定位、恢复和 RCA。 |
 | `netty-handler-dispatcher` | Netty TCP/UDP/WebSocket 协议入口、`func + version`、handler dispatcher、ACK、心跳和连接治理。 |
 | `vibecoding-knowledge-base` | 生成或更新根/模块级 `AGENTS.md`、`docs/vibecoding`、系统边界、证据链和 AI 编程知识库。 |
+
+## 快速开始
+
+将需要使用的 skill 目录复制到 Codex skills 目录，例如：
+
+```text
+D:\Users\CodexData\.codex\skills
+```
+
+推荐优先复制完整 `skills/` 目录，保持 skill 之间的引用关系完整。
+
+使用时可以直接在 Codex 中指定 skill，例如：
+
+```text
+使用 $java-backend-development-orchestrator 帮我判断这个 Java 后端需求应该走哪个开发流程。
+```
+
+或：
+
+```text
+使用 $java-backend-api-standard 帮我检查这个接口是否符合统一响应、错误码和请求头标准。
+```
 
 ## 推荐使用方式
 
